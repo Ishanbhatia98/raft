@@ -87,6 +87,7 @@ class PartialMediaInfoResponse(MediaInfoResponse, orm_mode=True):
     processed_total_count: Optional[int] = 1
     processed_count: Optional[int] = 0
 
+
     @classmethod
     def response_value(
         cls, obj, source: Literal["all", "processed", "raw"], idx: List[int] = None
@@ -115,8 +116,12 @@ class PartialMediaInfoResponse(MediaInfoResponse, orm_mode=True):
                 if idx[0] != -1
                 else obj.processed_files
             )
-            response["processed_files"] = _decode_raw_bytes(processed_files)
-            response["processed_count"] = len(response["processed_files"])
+            response.update(
+                {   
+                    "processed_files":_decode_raw_bytes(processed_files),
+                    "processed_count": len(processed_files),
+                }
+            )
         return response
 
 

@@ -13,7 +13,6 @@ def db_session_wrapper(func: Callable):
     async def wrapped_func(*args, **kwargs):
         async with get_db_session() as session:
             return await func(*args, **kwargs)
-
     return wrapped_func
 
 

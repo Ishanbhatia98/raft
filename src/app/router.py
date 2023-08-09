@@ -87,10 +87,10 @@ async def fetch_processed_file(
     """
     idx = list(map(int, idx.split(",")))
     media_info = MediaInfo.get_or_404(id=media_id)
-    if not media_info.processed_files:
-        raise MessageResponse(
-            detail="File has not been processed yet. Please try again later.",
-        )
+    # if not media_info.processed_files:
+    #     return MessageResponse(
+    #         detail="File has not been processed yet. Please try again later.",
+    #     )
     return PartialMediaInfoResponse.response_value(
         obj=media_info, source=source, idx=idx
     )
