@@ -3,12 +3,12 @@ from fastapi import FastAPI
 from fastapi.middleware import Middleware
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.routing import APIRoute
+from router import router
 from sqlalchemy import create_engine
 
 from app.database import db_instance
 from app.workers.celery import celery_app
 from app.workers.tasks import run_test_task
-from router import router
 
 
 async def root():
