@@ -42,3 +42,7 @@ Feel free to add to and edit as required.
 ## Troubleshooting
 - `docker-compose down` (This will destroy all your containers for the project)
 - `docker-compose up`
+
+# for container terminal
+- `docker ps` (to fetch the container id)
+- `docker exec -it <container_id> bash`
