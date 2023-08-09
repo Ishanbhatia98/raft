@@ -1,6 +1,6 @@
 import asyncio
-import os
 import logging
+import os
 
 from celery import Celery, Task
 from celery.utils.log import get_task_logger

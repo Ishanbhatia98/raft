@@ -52,10 +52,10 @@ class DatabaseInstance:
 
 db_instance = DatabaseInstance()
 
+
 def get_db_session():
     if hasattr(get_db_session, "_session") and not get_db_session._session.is_active:
         return get_db_session._session
     session = db_instance.initialize_session()
     get_db_session._session = session
     return session
-

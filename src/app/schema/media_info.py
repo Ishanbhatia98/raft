@@ -119,8 +119,10 @@ class PartialMediaInfoResponse(MediaInfoResponse, orm_mode=True):
             response["processed_count"] = len(response["processed_files"])
         return response
 
+
 class MessageResponse(BaseModel):
-    detail:str
+    detail: str
+
 
 if __name__ == "__main__":
     from app.database import db_instance

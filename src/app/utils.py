@@ -1,18 +1,21 @@
 import os
 import subprocess
 from io import BytesIO
-from typing import Union
+from typing import Callable, Union
 
 from pdf2image import convert_from_bytes
 from PIL import Image
+
 from app.database import get_db_session
-from typing import Callable
+
 
 def db_session_wrapper(func: Callable):
     async def wrapped_func(*args, **kwargs):
         async with get_db_session() as session:
             return await func(*args, **kwargs)
+
     return wrapped_func
+
 
 def convert_img_to_png_io(input_image_file: Union[BytesIO, bytes]) -> BytesIO:
     def _resize_img(max_resolution, width, height, img):

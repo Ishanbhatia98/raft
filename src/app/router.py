@@ -4,7 +4,7 @@ import os
 import uuid
 from copy import deepcopy
 from io import BytesIO
-from typing import Any, Dict, List, Literal, Optional, Union
+from typing import Any, Callable, Dict, List, Literal, Optional, Union
 
 import PyPDF2
 from fastapi import APIRouter, Body, Depends, File, HTTPException, UploadFile, status
@@ -24,11 +24,7 @@ from app.type import FileType
 from app.utils import convert_img_to_png_io, convert_pdf_to_png_io, db_session_wrapper
 from app.workers.tasks import process_raw_file
 
-from typing import Callable
-
-
 router = APIRouter(tags=["CONVERTER"])
-
 
 
 @db_session_wrapper
@@ -64,13 +60,16 @@ async def upload_files(file_type: FileType, file: UploadFile):
         process_raw_file.apply_async(args=[media_info.id])
     return media_infos
 
+
 @db_session_wrapper
 @router.get(
     "/download/{type}/{media_id}",
     status_code=status.HTTP_200_OK,
     response_model=Union[PartialMediaInfoResponse, MessageResponse],
 )
-async def fetch_processed_file(source: Literal["raw", "processed", "all"], media_id: str, idx: str = "-1"):
+async def fetch_processed_file(
+    source: Literal["raw", "processed", "all"], media_id: str, idx: str = "-1"
+):
     """
     Fetch processed file information.
 

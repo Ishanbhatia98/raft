@@ -63,6 +63,4 @@ middleware = Middleware(CORSMiddleware)
 
 app = FastAPI(routes=routes, middleware=[middleware])
 
-
-
 app.include_router(router)

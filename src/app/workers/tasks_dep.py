@@ -1,9 +1,9 @@
-import logging
 import asyncio
+import logging
 
 from sqlalchemy.orm import Session
 
-from app.workers.celery import celery_app, BaseDbTask, loop
+from app.workers.celery import BaseDbTask, celery_app, loop
 
 
 async def run_async_test_task(session: Session):
