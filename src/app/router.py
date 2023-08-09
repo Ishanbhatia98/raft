@@ -63,7 +63,7 @@ async def upload_files(file_type: FileType, file: UploadFile):
 
 @db_session_wrapper
 @router.get(
-    "/download/{type}/{media_id}",
+    "/download/{source}/{media_id}",
     status_code=status.HTTP_200_OK,
     response_model=Union[PartialMediaInfoResponse, MessageResponse],
 )
