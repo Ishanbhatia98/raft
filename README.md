@@ -2,7 +2,6 @@
 
 This is a template for a basic microservice.
 
-Feel free to add to and edit as required.
 
 ---
 ## What's included
